@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "经营主体退出协同案件资料",
+  "type": "object",
+  "required": [
+    "case_id",
+    "subject",
+    "path",
+    "status",
+    "matters",
+    "history",
+    "decisions"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "object",
+      "required": ["id", "name", "type"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "type": { "enum": ["company", "individual_business"] }
+      },
+      "additionalProperties": false
+    },
+    "path": {
+      "enum": ["simplified", "ordinary", "forced", "suspension"]
+    },
+    "path_label": { "type": "string" },
+    "status": {
+      "enum": ["in_progress", "deregistered", "suspended", "withdrawn", "restored"]
+    },
+    "announcement_days": { "type": "integer", "minimum": 0 },
+    "matters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["kind", "label", "blocking", "status"],
+        "properties": {
+          "kind": { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "minLength": 1 },
+          "blocking": { "type": "boolean" },
+          "status": { "enum": ["pending", "cleared", "blocked"] },
+          "detail": { "type": "string" },
+          "receipts": { "type": "array" },
+          "claims": { "type": "array" }
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["seq", "type", "actor", "detail", "visibility"],
+        "properties": {
+          "seq": { "type": "integer", "minimum": 1 },
+          "type": { "type": "string", "minLength": 1 },
+          "actor": { "type": "string" },
+          "detail": { "type": "string" },
+          "visibility": { "enum": ["public", "internal"] },
+          "at": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["decision_id", "outcome", "label", "active"],
+        "properties": {
+          "decision_id": { "type": "string", "minLength": 1 },
+          "outcome": { "enum": ["approve", "refuse"] },
+          "label": { "type": "string" },
+          "active": { "type": "boolean" },
+          "explanations": { "type": "array" }
+        }
+      }
+    },
+    "applied_receipt_ids": { "type": "array", "items": { "type": "string" } },
+    "security_hold": { "type": ["object", "null"] },
+    "needs_review": { "type": "boolean" },
+    "liquidation_group": { "type": ["object", "null"] },
+    "path_suggestion": { "type": "string" },
+    "created_at": { "type": ["string", "null"] }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,136 @@
+{
+  "case_id": "EX-2026-0001",
+  "subject": {
+    "id": "91000000SAMPLE01",
+    "name": "样例织造厂（虚构主体）",
+    "type": "company"
+  },
+  "path": "ordinary",
+  "path_label": "普通清算",
+  "status": "in_progress",
+  "announcement_days": 45,
+  "matters": [
+    {
+      "kind": "announcement",
+      "label": "公告",
+      "blocking": true,
+      "status": "blocked",
+      "detail": "公告异议待处理：债权人样例贸易行对债权债务清理承诺提出异议",
+      "receipts": []
+    },
+    {
+      "kind": "creditor_claims",
+      "label": "债权申报",
+      "blocking": true,
+      "status": "blocked",
+      "detail": "存在未处理的债权申报",
+      "receipts": [],
+      "claims": [
+        {
+          "claim_id": "CL-0001",
+          "creditor_ref": "creditor-token-A",
+          "amount": 120000,
+          "status": "filed",
+          "filed_at": "2026-09-10T10:00:00+08:00"
+        }
+      ]
+    },
+    {
+      "kind": "tax_clearance",
+      "label": "税费结清",
+      "blocking": true,
+      "status": "cleared",
+      "detail": "部门确认已结清",
+      "receipts": [
+        {
+          "receipt_id": "R-TAX-0001",
+          "department": "税务部门",
+          "result": "cleared",
+          "detail": "",
+          "at": "2026-09-08T15:00:00+08:00"
+        }
+      ]
+    },
+    {
+      "kind": "employee_rights",
+      "label": "员工权益",
+      "blocking": true,
+      "status": "pending",
+      "detail": "等待部门回执或企业补正",
+      "receipts": []
+    },
+    {
+      "kind": "litigation",
+      "label": "诉讼限制",
+      "blocking": true,
+      "status": "pending",
+      "detail": "等待部门回执或企业补正",
+      "receipts": []
+    },
+    {
+      "kind": "licenses",
+      "label": "许可证处置",
+      "blocking": true,
+      "status": "pending",
+      "detail": "等待部门回执或企业补正",
+      "receipts": []
+    },
+    {
+      "kind": "platform_accounts",
+      "label": "平台账户处置",
+      "blocking": true,
+      "status": "pending",
+      "detail": "等待部门回执或企业补正",
+      "receipts": []
+    }
+  ],
+  "history": [
+    {
+      "seq": 1,
+      "type": "case_created",
+      "actor": "enterprise",
+      "detail": "按普通清算路径发起",
+      "visibility": "public",
+      "at": "2026-09-01T09:00:00+08:00"
+    },
+    {
+      "seq": 2,
+      "type": "liquidation_group_change",
+      "actor": "enterprise",
+      "detail": "清算组变更：（未备案） → 负责人甲、财务乙",
+      "visibility": "public",
+      "at": "2026-09-02T10:00:00+08:00",
+      "data": { "previous": [], "next": ["负责人甲", "财务乙"] }
+    },
+    {
+      "seq": 3,
+      "type": "receipt_applied",
+      "actor": "税务部门",
+      "detail": "税费结清：部门确认已结清",
+      "visibility": "public",
+      "at": "2026-09-08T15:00:00+08:00"
+    },
+    {
+      "seq": 4,
+      "type": "claim_filed",
+      "actor": "creditor-token-A",
+      "detail": "债权申报CL-0001，金额120000",
+      "visibility": "public",
+      "at": "2026-09-10T10:00:00+08:00"
+    },
+    {
+      "seq": 5,
+      "type": "objection",
+      "actor": "creditor-token-A",
+      "detail": "债权人样例贸易行对债权债务清理承诺提出异议",
+      "visibility": "public",
+      "at": "2026-09-11T09:30:00+08:00"
+    }
+  ],
+  "decisions": [],
+  "applied_receipt_ids": ["R-TAX-0001"],
+  "security_hold": null,
+  "needs_review": false,
+  "liquidation_group": { "members": ["负责人甲", "财务乙"], "since": "2026-09-02T10:00:00+08:00" },
+  "created_at": "2026-09-01T09:00:00+08:00"
+}
